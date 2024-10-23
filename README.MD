@@ -1,5 +1,6 @@
 # The Kodi Repo Depot UI
 
+![The Kodi Repo Depot UI](https://github.com/chicanoandres702/The-Kodi-Repo-Depot-UI/blob/main/Screenshot.png?raw=true)
 Welcome to the Kodi Repo Depot UI—a sleek, web-based tool designed to make creating and managing your Kodi repositories a breeze. With its user-friendly interface, you'll find it easy to upload, organize, and maintain your add-ons.
 
 ## Features
