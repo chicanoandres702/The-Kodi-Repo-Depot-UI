@@ -15,7 +15,7 @@ Welcome to the Kodi Repo Depot UI—a sleek, web-based tool designed to make cre
 
 1. **Clone the repository:**  
    ```bash
-   git clone https://github.com/your-username/kodi-repo-depot-ui.git
+   git clone https://github.com/chicanoandres702/kodi-repo-depot-ui.git
    ```
 2. **Upload to your web server:**  
    Transfer the contents of the repository to a PHP-supported web server.
