@@ -1,0 +1,412 @@
+:root {
+    --background-color: #121212;
+    --sidebar-bg: #1f1f1f;
+    --primary-color: #f44336;
+    --hover-color: #d32f2f;
+    --text-color: #ffffff;
+    --secondary-bg: #2b2b2b;
+    --highlight-bg: #444;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+    z-index: 100;
+}
+
+.sidebar.active {
+    transform: translateX(-100%);
+}
+
+.sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 101;
+    transition: color 0.3s;
+}
+
+.sidebar-toggle:hover {
+    color: var(--hover-color);
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+    overflow-y: auto;
+    margin-bottom: 50px; /* Adjust for footer height */
+}
+
+.sidebar h2 {
+    margin: 0 0 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: var(--primary-color);
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+}
+
+.upload-area {
+    border: 2px dashed var(--text-color);
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background-color 0.3s;
+    margin: 20px auto;
+}
+
+.upload-area:hover {
+    background-color: #1e1e1e;
+}
+
+.upload-area.drag-over {
+    background-color: #333333;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+}
+
+.progress {
+    width: 100%;
+    background-color: #444;
+    border-radius: 5px;
+    margin-top: 10px;
+    height: 20px;
+    display: none;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #4caf50;
+    border-radius: 5px;
+}
+
+.addon-list {
+    width: 100%;  /* Make the addon-list take full width */
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align items to the start */
+    gap: 15px;
+}
+
+.addon-item {
+    width: 120px;
+    height: 140px;
+    background-color: var(--secondary-bg);
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.addon-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.addon-item:hover {
+    transform: scale(1.05);
+    background-color: #444;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling */
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    position: relative;
+    margin: 5% auto; /* Adjusted to be higher */
+    padding: 30px;
+    width: 80%;
+    max-width: 600px;
+    background: #222;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-fanart {
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.modal-info {
+    background: rgba(34, 34, 34, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.modal-content h2 {
+    margin: 0 0 15px;
+    font-size: 24px;
+}
+
+.modal-content p {
+    margin: 10px 0;
+}
+
+.icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button#deleteButton {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button#deleteButton:hover {
+    background-color: var(--hover-color);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--sidebar-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed; /* Make footer fixed */
+    bottom: 0; /* Stick to the bottom */
+    width: 100%;
+    z-index: 100; /* Ensure it appears above other content */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px; /* Adjust sidebar width */
+    }
+    .upload-area {
+        max-width: 100px; /* Full width on smaller screens */
+    }
+    .addon-item {
+        width: 80px; /* Smaller size for mobile */
+    }
+}
+
+.setupBtn {
+    float: left; /* Moves the button to the left */
+    margin-right: 20px; /* Optional: adds space to the right */
+}
+
+.container {
+    display: flex; 
+}
+
+#uploadSection {
+    width: 30%;  
+    margin-right: 20px; 
+}
+
+#addonsSection {
+    width: 70%;  /* Adjust this value as needed */
+}
+
+#repoModal .modal-content {
+    background: #222;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+#repoModal .modal-content h2 {
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+#repoModal label {
+    display: block; /* Labels on their own line */
+    margin-bottom: 5px;
+    color: var(--text-color);
+    text-align: left;
+}
+
+#repoModal input[type="text"] {
+    width: 100%; /* Full width inputs */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    background-color: #111;
+    color: var(--text-color);
+    border-radius: 5px;
+}
+
+#repoModal input[type="file"] {
+    display: none; 
+}
+
+#repoModal button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Space between buttons */
+}
+
+#repoModal button:hover {
+    background-color: var(--hover-color);
+}
+
+#repoModal .file-input-group { /* No flexbox, use full width */
+    margin-bottom: 15px;
+}
+
+#repoModal .file-input-group {
+    display: flex; /* Use flexbox for horizontal alignment */
+    align-items: center; /* Vertically center items */
+    margin-bottom: 15px;
+}
+
+#repoModal label {
+    /* ... your existing label styles ... */
+    width: 80px; /* Adjust label width as needed */
+    margin-right: 10px; /* Add space between label and button */
+}
+
+#repoModal input[type="text"] {
+    flex-grow: 1; /* Allow the input to take up available space */
+    /* ... your existing input styles ... */
+}
+
+#repoModal button {
+    /* ... your existing button styles ... */
+    margin-left: 0; /* Remove extra margin */
+}
